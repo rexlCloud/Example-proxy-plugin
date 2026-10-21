@@ -1,0 +1,7 @@
+name: ExampleCloudProxyPlugin
+version: '${version}'
+main: de.rexlcloud.example.proxy.bungee.ExampleBungeePlugin
+description: Shows how a proxy plugin uses the rexlCloud API
+author: rexlCloud
+# The cloud's proxy plugin has to be loaded first
+depends: [rexlCloudProxy]

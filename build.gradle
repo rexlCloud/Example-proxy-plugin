@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+}
+
+group = 'de.rexlcloud.example'
+version = '1.0.0'
+
+// The rexlCloud version this example is built against; use the version of your cloud
+def rexlCloudVersion = '2.0.24'
+
+repositories {
+    mavenCentral()
+    // Velocity and BungeeCord
+    maven { url = 'https://repo.papermc.io/repository/maven-public/' }
+    // The rexlCloud APIs
+    maven { url = 'https://repo.rexlcloud.de/snapshots' }
+}
+
+dependencies {
+    compileOnly 'com.velocitypowered:velocity-api:4.3.0'
+    // Writes velocity-plugin.json from the @Plugin annotation
+    annotationProcessor 'com.velocitypowered:velocity-api:4.3.0'
+    compileOnly 'net.md-5:bungeecord-api:1.21-R0.4'
+    // compileOnly: the cloud installs its proxy plugin, which contains the API, on every proxy
+    compileOnly "de.rexlcloud:proxy-api:$rexlCloudVersion"
+}
+
+java {
+    // Velocity 4 needs Java 25
+    toolchain.languageVersion = JavaLanguageVersion.of(25)
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+processResources {
+    filesMatching('bungee.yml') {
+        expand(version: project.version)
+    }
+}
