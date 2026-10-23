@@ -6,7 +6,7 @@ group = 'de.rexlcloud.example'
 version = '1.0.0'
 
 // The rexlCloud version this example is built against; use the version of your cloud
-def rexlCloudVersion = '1.0.0'
+def rexlCloudVersion = '1.0.1'
 
 repositories {
     mavenCentral()
